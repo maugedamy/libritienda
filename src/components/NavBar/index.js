@@ -1,27 +1,4 @@
-// export default const Navbar = () => {
-//     <nav className="nav">
-//         <a href="/" className = "site-title">LibriStore</a>
-//         <ul>
-//             <li>
-//                 <a href="/generos">Géneros</a>
-//             </li>
-//             <li>
-//                 <a href="/autores">Autores</a>
-//             </li>
-//             <li>
-//                 <a href="/bestsellers">Bestsellers</a>
-//             </li>
-//             <li>
-//                 <a href="/colecciones">Colecciones</a>
-//             </li>
-//             <li>
-//                 <a href="/carrito">Carrito</a>
-//             </li>
-
-//         </ul>
-//     </nav>
-// }
-
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -29,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import CartWidget from '../CartWidget';
 
 function NavBar() {
     return (
@@ -67,6 +45,7 @@ function NavBar() {
                                             Géneros
                                         </NavDropdown.Item> */}
                                     </NavDropdown>
+                                    <Nav.Link href="./carrito"><CartWidget /></Nav.Link>
                                 </Nav>
                                 <Form className="d-flex">
                                     <Form.Control
