@@ -1,0 +1,60 @@
+.counter {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 20px;
+}
+ 
+.counter h2 {
+    color: rgb(16, 0, 54);
+    font-size: 40px;
+}
+ 
+.counter__output {
+    font-size: 40px;
+    color: rgba(0, 14, 0, 0.747)
+}
+ 
+.btn__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    column-gap: 20px;
+}
+ 
+.control__btn {
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: rgba(39, 121, 18, 0.76);
+    border: 1px solid rgb(16, 0, 54);
+    border-radius: 20%;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+ 
+.control__btn:hover {
+    background-color: rgba(39, 121, 18, 0.76);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(16, 0, 54);
+}
+ 
+.agregar {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: rgb(10, 46, 1);
+    border: 1px solid rgb(16, 0, 54);
+    border-radius: 7%;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+ 
+.agregar:hover {
+    background-color: rgba(39, 121, 18, 0.76);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(16, 0, 54);
+}

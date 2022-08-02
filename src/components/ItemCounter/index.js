@@ -1,0 +1,41 @@
+import {React, useState} from 'react';
+import styles from './styles.css'
+
+export function ItemCounter() {
+    const [cont, setCounter] = useState(0);
+ 
+    
+    const incrementar = () => {
+      setCounter(cont => cont + 1);
+    };
+   
+  
+    const decrementar = () => {
+        if (cont > 0) {
+        setCounter(cont => cont - 1);
+        }
+    };
+   
+    
+    const AgregaralCarrito = () =>{
+        if (cont == 1) {
+            alert(`Se agregó ${cont} item al carrito`)
+        } else {
+            alert(`Se agregaron ${cont} items al carrito`)
+        }
+    }
+   
+    return (
+      <div className="counter">
+        <h2>Contador</h2>
+        <span className="counter__output">{cont}</span>
+        <div className="btn__container">
+          <button className="control__btn" onClick={incrementar}>+</button>
+          <button className="control__btn" onClick={decrementar}>-</button>
+          <button className="agregar" onClick={cont>0 ? AgregaralCarrito : ""}>Agregar al carrito</button>
+        </div>
+      </div>
+    );
+}
+
+export default ItemCounter;
