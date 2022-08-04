@@ -4,16 +4,14 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
-    row-gap: 20px;
 }
  
-.counter h2 {
+.counter h4 {
     color: rgb(16, 0, 54);
-    font-size: 40px;
 }
  
 .counter__output {
-    font-size: 40px;
+    font-size: 2rem;
     color: rgba(0, 14, 0, 0.747)
 }
  
@@ -21,16 +19,15 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-    column-gap: 20px;
+    column-gap: 0.5rem;
 }
  
 .control__btn {
     font-size: 20px;
-    padding: 10px 20px;
+    padding: 0.5rem 1rem;
     background-color: transparent;
     color: rgba(39, 121, 18, 0.76);
     border: 1px solid rgb(16, 0, 54);
-    border-radius: 20%;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
@@ -48,7 +45,6 @@
     background-color: transparent;
     color: rgb(10, 46, 1);
     border: 1px solid rgb(16, 0, 54);
-    border-radius: 7%;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }

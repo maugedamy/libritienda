@@ -27,7 +27,7 @@ export function ItemCounter() {
    
     return (
       <div className="counter">
-        <h2>Contador</h2>
+        <h4>Contador</h4>
         <span className="counter__output">{cont}</span>
         <div className="btn__container">
           <button className="control__btn" onClick={incrementar}>+</button>

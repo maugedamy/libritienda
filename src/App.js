@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <ItemListContainer greeting="Buenas Noches"/>
+      <ItemListContainer />
     </>
   );
 }
