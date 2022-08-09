@@ -6,8 +6,12 @@ export function ItemCounter() {
  
     
     const incrementar = () => {
+      if (cont <=9){
       setCounter(cont => cont + 1);
+    }  else
+    alert("No hay más libros en stock")
     };
+    
    
   
     const decrementar = () => {
