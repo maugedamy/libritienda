@@ -1,9 +1,6 @@
 import Item from "../Item";
 
 export default function ItemList({ librosList }) {
-    const showLibrosDetails = (id) => {
-        console.log(`Pepe`)
-    }
     return (
         <div className="libros-list" style={{display:'grid',justifyContent:'center'}}>
             
@@ -16,7 +13,6 @@ export default function ItemList({ librosList }) {
                         title={libro.title}
                         price={libro.price}
                         description={libro.description}
-                        Callback={showLibrosDetails}
                      />
                 );
             })}

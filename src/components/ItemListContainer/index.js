@@ -1,41 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import React from "react";
-import ItemList from '../ItemList';
+import ItemList from "../ItemList";
+import { useParams } from "react-router-dom";
+import { getLibros, getLibrosByCategory } from "../../asyncmock";
 
-export function ItemListContainer () {
-    
-    const [libros, setlibros] = useState([]);
+export function ItemListContainer() {
+  const [libros, setLibros] = useState([]);
+  const { categoryId } = useParams();
 
-    useEffect(() => {
-        
-        async function callLibros () {
-          const response = await getLibros();
-          const jsonParsed = await response.json(); 
-          setlibros(jsonParsed.libros);
-        }
-    
-        const timer = setTimeout(function () {callLibros();},2000);
-        return function () {clearTimeout(timer);}
-      }, []);
+  useEffect(() => {
+    if (!categoryId) {
+      getLibros().then((libros) => {
+        setLibros(libros);
+      });
+    } else {
+      getLibrosByCategory(categoryId).then((libros) => {
+        setLibros(libros);
+      });
+    }
+  }, [categoryId]);
 
-    return (
-        <div className="item-list-container">
-            <ItemList librosList={libros} />
-        </div>
-    );
-}
-
-function getLibros() {
-
-    return fetch("./libros.json", {
-        method: 'GET',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-    });
-
+  return (
+    <div className="item-list-container">
+      <ItemList librosList={libros} />
+    </div>
+  );
 }
 
 export default ItemListContainer;

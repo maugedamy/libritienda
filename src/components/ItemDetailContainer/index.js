@@ -1,26 +1,19 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import React from "react";
 import ItemDetail from '../ItemDetail';
+import { getLibroById } from "../../asyncmock";
 
-export function ItemDetailContainer({id}) {
+
+export function ItemDetailContainer() {
     const [libro, setLibro] = useState();
+    const { id } = useParams();
 
     useEffect(() => {
-        
-        async function callLibro () {
-          const response = await getLibro();
-          const jsonParsed = await response.json(); 
-          for (let i=0; i<jsonParsed.libros.length; i++) {
-            if (jsonParsed.libros[i].id == id) {
-                setLibro(jsonParsed.libros[i]);
-                break;
-            }
-          }
-        }
-    
-        const timer = setTimeout(function () {callLibro();},2000);
-        return function () {clearTimeout(timer);}
-    },[]);
+        getLibroById(id).then((libro) => {
+            setLibro(libro);
+        })
+    },[id]);
     return (
     <>
     {!libro && <div>Cargando...</div>}
@@ -31,19 +24,6 @@ export function ItemDetailContainer({id}) {
     </>
     );
     
-}
-
-function getLibro() {
-
-    return fetch("./libros.json", {
-        method: 'GET',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-    });
-
 }
 
 export default ItemDetailContainer;

@@ -15,7 +15,7 @@ function NavBar() {
             {['sm'].map((expand) => (
                 <Navbar key={expand} bg="light" expand={expand} className="mb-3">
                     <Container fluid>
-                        <Navbar.Brand href="#">LibriTienda</Navbar.Brand>
+                        <Navbar.Brand href="/">LibriTienda</Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
                         <Navbar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}
@@ -29,15 +29,15 @@ function NavBar() {
                             </Offcanvas.Header>
                             <Offcanvas.Body>
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    <Nav.Link href="./index">Inicio</Nav.Link>
-                                    <Nav.Link href="./colecciones">Colecciones</Nav.Link>
-                                    <Nav.Link href="./generos">Géneros</Nav.Link>
+                                    <Nav.Link href="/">Inicio</Nav.Link>
+                                    <Nav.Link href="/category/colecciones">Colecciones</Nav.Link>
+                                    {/* <Nav.Link href="/category/generos">Géneros</Nav.Link> */}
                                     <NavDropdown
                                         title="Idiomas"
                                         id={`offcanvasNavbarDropdown-expand-${expand}`}
                                     >
-                                        <NavDropdown.Item href="#action3">Español</NavDropdown.Item>
-                                        <NavDropdown.Item href="#action4">
+                                        <NavDropdown.Item href="/category/espanol">Español</NavDropdown.Item>
+                                        <NavDropdown.Item href="/category/ingles">
                                             Inglés
                                         </NavDropdown.Item>
                                         {/* <NavDropdown.Divider />
@@ -45,7 +45,7 @@ function NavBar() {
                                             Géneros
                                         </NavDropdown.Item> */}
                                     </NavDropdown>
-                                    <Nav.Link href="./carrito"><CartWidget /></Nav.Link>
+                                    <Nav.Link href="./carrito"><CartWidget totalQuantity={5}/></Nav.Link>
                                 </Nav>
                                 <Form className="d-flex">
                                     <Form.Control

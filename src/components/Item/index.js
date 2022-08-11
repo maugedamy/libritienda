@@ -1,19 +1,9 @@
-import { useEffect, useState } from 'react';
-import ItemCounter from '../ItemCounter';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useCallback } from 'react';
-import ItemDetailContainer from '../ItemDetailContainer';
 
 
-function Item({ id, title, description, price, pictureUrl, Callback}) {
-    // const loadLibrosDetails = function () {
-    //     return (<ItemDetailContainer id={id}/>)
-    //     // Callback(id)
-    // }
-    const [mostrar, setMostrar] = useState(false);
+function Item({ id, title, description, price, pictureUrl}) {
     const loadLibrosDetails = () => {
-        setMostrar(!mostrar)
+        window.location.href=`/detalles/${id}`
     }
 
     return (
@@ -28,7 +18,6 @@ function Item({ id, title, description, price, pictureUrl, Callback}) {
             {/* <ItemCounter /> */}
             </Card.Body>
             {<button onClick={loadLibrosDetails}>Ver detalles</button>}
-            {mostrar && <ItemDetailContainer id={id} />}
         {/* </div>          */}
         </Card>
     );
