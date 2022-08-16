@@ -1,10 +1,8 @@
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 
 
-function Item({ id, title, description, price, pictureUrl}) {
-    const loadLibrosDetails = () => {
-        window.location.href=`/detalles/${id}`
-    }
+function Item({ id, title, price, pictureUrl}) {
 
     return (
         <Card style={{ width: '25rem' }}>
@@ -16,8 +14,12 @@ function Item({ id, title, description, price, pictureUrl}) {
             <Card.Title style={{textAlign:'center'}}>{`$${price}`}</Card.Title>
             {/* <Card.Text>{`${description}`}</Card.Text> */}
             {/* <ItemCounter /> */}
+            <Link to={`/detalles/${id}`}>
+                <button>Ver detalles</button>
+            </Link>
             </Card.Body>
-            {<button onClick={loadLibrosDetails}>Ver detalles</button>}
+            {/* {<button onClick={loadLibrosDetails}>Ver detalles</button>} */}
+            
         {/* </div>          */}
         </Card>
     );
