@@ -1,9 +1,12 @@
 import {React, useState} from 'react';
-import styles from './styles.css'
+import styles from './styles.css';
 
-export function ItemCounter() {
+export function ItemCounter({fnAgregarAlCarrito}) {
     const [cont, setCounter] = useState(0);
- 
+
+    const AgregarCarrito = () => {
+      fnAgregarAlCarrito(cont);
+    }
     
     const incrementar = () => {
       if (cont <=9){
@@ -12,23 +15,12 @@ export function ItemCounter() {
     alert("No hay más libros en stock")
     };
     
-   
-  
     const decrementar = () => {
         if (cont > 0) {
         setCounter(cont => cont - 1);
         }
     };
-   
-    
-    const AgregaralCarrito = () =>{
-        if (cont == 1) {
-            alert(`Se agregó ${cont} item al carrito`)
-        } else {
-            alert(`Se agregaron ${cont} items al carrito`)
-        }
-    }
-   
+      
     return (
       <div className="counter">
         <h4>Contador</h4>
@@ -36,7 +28,7 @@ export function ItemCounter() {
         <div className="btn__container">
           <button className="control__btn" onClick={incrementar}>+</button>
           <button className="control__btn" onClick={decrementar}>-</button>
-          <button className="agregar" onClick={cont>0 ? AgregaralCarrito : ""}>Agregar al carrito</button>
+          <button className="agregar" onClick={cont>0 ? AgregarCarrito: ""}>Agregar al carrito</button>
         </div>
       </div>
     );
