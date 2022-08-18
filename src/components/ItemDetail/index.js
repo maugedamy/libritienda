@@ -2,16 +2,19 @@ import ItemCounter from "../ItemCounter";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import {React, useState} from 'react';
+import {React, useState, useContext} from 'react';
+import { CartContext } from '../../context/CartContext';
 
 function ItemDetail(libro) {
   const [mostrarCompra, setMostrarCompra] = useState(false);
   const [contCarrito, setContCarrito] = useState(0);
-
-  const AgregaralCarrito = (cont) => {
-   setMostrarCompra(!mostrarCompra);
-   setContCarrito(contCarrito+cont);
-   console.log(contCarrito);
+  const { addToCart } = useContext(CartContext);
+  
+  const AgregaralCarrito = (count) => {
+  //  setMostrarCompra(!mostrarCompra);
+  //  setContCarrito(contCarrito+cont);
+  //  console.log(contCarrito);
+    addToCart({...libro.libroDetail, count});
   };
 
   return (
@@ -29,10 +32,11 @@ function ItemDetail(libro) {
             style={{ textAlign: "center" }}
           >{`$${libro.libroDetail.price}`}</Card.Title>
           {<Card.Text>{`${libro.libroDetail.description}`}</Card.Text>}
-          {!mostrarCompra&&<ItemCounter fnAgregarAlCarrito={AgregaralCarrito}/>}
-          {mostrarCompra&&<Link to={`/carrito`}>
-            <button>Comprar</button>
-          </Link>}
+          {/* {!mostrarCompra&&<ItemCounter fnAgregarAlCarrito={AgregaralCarrito}/>}
+          {mostrarCompra&&<Link to={`/carrito`}> */}
+          {<ItemCounter fnAgregarAlCarrito={AgregaralCarrito}/>}
+            {/* <button>Comprar</button>
+          </Link>} */}
         </Card.Body>
       </Card>
     </div>

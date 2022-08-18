@@ -1,4 +1,5 @@
 import {React, useState} from 'react';
+import { Link } from "react-router-dom";
 import styles from './styles.css';
 
 export function ItemCounter({fnAgregarAlCarrito}) {
@@ -28,7 +29,9 @@ export function ItemCounter({fnAgregarAlCarrito}) {
         <div className="btn__container">
           <button className="control__btn" onClick={incrementar}>+</button>
           <button className="control__btn" onClick={decrementar}>-</button>
-          <button className="agregar" onClick={cont>0 ? AgregarCarrito: ""}>Agregar al carrito</button>
+          <Link to={`/carrito`}>
+            <button className="agregar" onClick={cont>0 ? AgregarCarrito: ""}>Agregar al carrito</button>
+          </Link>
         </div>
       </div>
     );
