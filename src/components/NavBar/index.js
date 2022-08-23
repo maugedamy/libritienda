@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -8,8 +7,11 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import CartWidget from "../CartWidget";
+import { CartContext } from '../../context/CartContext';
+import React, { useContext } from 'react';
 
 function NavBar() {
+  const { cart } = useContext(CartContext);
   return (
     <>
       {["sm"].map((expand) => (
@@ -44,9 +46,10 @@ function NavBar() {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                   </NavDropdown>
-                  <Link className="nav-link" to="./carrito">
+                  {cart.length > 0 && <Link className="nav-link" to="./carrito">
                     <CartWidget />
                   </Link>
+                  }
                 </Nav>
                 {/* <Form className="d-flex">
                   <Form.Control
