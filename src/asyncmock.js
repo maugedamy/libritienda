@@ -1,3 +1,6 @@
+import { DB } from './api/APIFirebase';
+import { collection, getDocs } from 'firebase/firestore';
+
 const librosjson = [
   {
     id: 5656,
@@ -102,13 +105,39 @@ const librosjson = [
   },
 ];
 
-export const getLibros = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(librosjson);
-    }, 500);
+
+
+
+export const getLibros = (categoryId) => {
+  return new Promise( (resolve,reject) => {
+    const colRef = collection(DB, 'libros');
+    getDocs(colRef).then((snapshot) => {
+      console.log('>>snapshot.docs: ', snapshot.docs);
+
+      const librosConFormato = snapshot.docs.map((rawDoc) => {
+        return {
+          id: rawDoc.id,
+          ...rawDoc.data()
+        }
+
+      });
+
+      console.log('>>Libros: ', librosConFormato);
+      resolve(librosConFormato);
+    }, (error) =>{
+      reject('Error al cargar libros', error);
+    });
   });
-};
+}
+
+
+
+//     return new Promise((resolve, reject) => {
+//       setTimeout(() => {
+//         resolve(librosjson);
+//       }, 500);
+//     });
+// });
 
 export const getLibrosByCategory = (categoryId) => {
   return new Promise((resolve, reject) => {

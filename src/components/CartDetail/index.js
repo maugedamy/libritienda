@@ -118,7 +118,7 @@ const CartDetail = () => {
             <input
               type='text'
               id='promo'
-              placeholder='Enter your code'
+              placeholder='Ingresá tu código de descuento'
               className='p-2 text-sm w-full'
               readOnly
             />
