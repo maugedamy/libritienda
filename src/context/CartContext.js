@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext } from "react";
 
 export const CartContext = createContext();
 
@@ -37,9 +37,20 @@ const CartContextProvider = ({ children }) => {
     setCart([]);
   };
 
+  const calcTotal = () => {
+    let totalSuma = 0;
+    if (cart.length > 0) {
+      totalSuma = cart.reduce(
+        (total, item) => total + parseInt(item.price) * parseInt(item.count),
+        0
+      );
+    }
+    return totalSuma;
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, removeAll, isInCart }}
+      value={{ cart, addToCart, removeFromCart, removeAll, isInCart, calcTotal }}
     >
       {children}
     </CartContext.Provider>

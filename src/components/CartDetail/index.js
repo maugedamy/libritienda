@@ -1,8 +1,39 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
+import { getLibros, createOrderInFirestore } from "../../asyncmock";
 const CartDetail = () => {
-  const { cart, removeFromCart, removeAll } = useContext(CartContext);
+  const { cart, removeFromCart, removeAll, calcTotal } = useContext(CartContext);
+
+  const createOrder = () => {
+    
+    const LibrosDB = cart.map(libroDB => ({
+      id: libroDB.id,
+      title: libroDB.title,
+      price: libroDB.price
+    }));
+
+    // cart.forEach(async (libroDB) => {
+    //   updateStock(libroDB)
+    // });
+
+    let order = {
+      buyer: {
+        name: "Guillermo",
+        email: "gjmo@email.com",
+        phone: "+549123456"
+      },
+      total: calcTotal(),
+      items: LibrosDB
+    };
+
+    createOrderInFirestore(order)
+      .then(result => alert('Su orden ha sido creada. ID: ' + result.id))
+      .catch(err => console.log(err));
+  
+    removeAll();
+  
+  }
 
   return (
     <div className='container mx-auto mt-10'>
@@ -136,7 +167,7 @@ const CartDetail = () => {
               }
               </span>
             </div>
-            <button
+            <button onClick={createOrder}
               className='bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full'
             >
               Terminar Compra

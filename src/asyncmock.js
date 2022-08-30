@@ -1,5 +1,15 @@
-import { DB } from './api/APIFirebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { DB } from "./api/APIFirebase";
+import {
+  doc,
+  collection,
+  getDocs,
+  query,
+  where,
+  getDoc,
+  setDoc,
+  serverTimestamp,
+  updateDoc
+} from "firebase/firestore";
 
 const librosjson = [
   {
@@ -105,32 +115,29 @@ const librosjson = [
   },
 ];
 
-
-
-
 export const getLibros = (categoryId) => {
-  return new Promise( (resolve,reject) => {
-    const colRef = collection(DB, 'libros');
-    getDocs(colRef).then((snapshot) => {
-      console.log('>>snapshot.docs: ', snapshot.docs);
+  return new Promise((resolve, reject) => {
+    const colRef = collection(DB, "libros");
+    getDocs(colRef).then(
+      (snapshot) => {
+        console.log(">>snapshot.docs: ", snapshot.docs);
 
-      const librosConFormato = snapshot.docs.map((rawDoc) => {
-        return {
-          id: rawDoc.id,
-          ...rawDoc.data()
-        }
+        const librosConFormato = snapshot.docs.map((rawDoc) => {
+          return {
+            id: rawDoc.id,
+            ...rawDoc.data(),
+          };
+        });
 
-      });
-
-      console.log('>>Libros: ', librosConFormato);
-      resolve(librosConFormato);
-    }, (error) =>{
-      reject('Error al cargar libros', error);
-    });
+        console.log(">>Libros: ", librosConFormato);
+        resolve(librosConFormato);
+      },
+      (error) => {
+        reject("Error al cargar libros", error);
+      }
+    );
   });
-}
-
-
+};
 
 //     return new Promise((resolve, reject) => {
 //       setTimeout(() => {
@@ -139,18 +146,70 @@ export const getLibros = (categoryId) => {
 //     });
 // });
 
-export const getLibrosByCategory = (categoryId) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(librosjson.filter((lib) => (categoryId === 'colecciones' && lib.collection === true) || lib.category === categoryId));
-    }, 500);
-  });
+// export const getLibrosByCategory = (categoryId) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(librosjson.filter((lib) => (categoryId === 'colecciones' && lib.collection === true) || lib.category === categoryId));
+//     }, 500);
+//   });
+// };
+
+export const getLibrosByCategory = async (categoryId) => {
+  let consulta;
+
+  if (categoryId === "colecciones") {
+    consulta = query(collection(DB, "libros"), where("collection", "==", true));
+  } else {
+    consulta = query(
+      collection(DB, "libros"),
+      where("category", "==", categoryId)
+    );
+  }
+
+  const querySnapshot = await getDocs(consulta);
+  const librosConsulta = querySnapshot.docs.map((rawDoc) => ({
+    id: rawDoc.id,
+    ...rawDoc.data(),
+  }));
+
+  return librosConsulta;
 };
 
 export const getLibroById = (id) => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(librosjson.find((lib) => lib.id == id));
-    }, 500);
+    const colRef = doc(DB, "libros", id);
+    getDoc(colRef).then(
+      (docLibro) => {
+        console.log(">>snapshot.docs: ", docLibro.doc);
+
+        if (docLibro.exists()) {
+          const librosConFormato = {
+            id: id,
+            ...docLibro.data(),
+          };
+
+          console.log(">>Libros: ", librosConFormato);
+          resolve(librosConFormato);
+        }
+      },
+      (error) => {
+        reject("Error al cargar libros", error);
+      }
+    );
   });
 };
+
+export const createOrderInFirestore = async (order) => {
+  // Add a new document with a generated id
+  order.date = serverTimestamp();
+  const newOrderRef = doc(collection(DB, "orders"));
+  await setDoc(newOrderRef, order);
+  return newOrderRef;
+};
+
+// export const updateStock = async (libroCarrito) => {
+//   const itemRef = doc(DB, "products", libroCarrito.id);
+//   await updateDoc(itemRef, {
+//     stock: increment(-libroCarrito.qtyItem),
+//   });
+// };

@@ -14,9 +14,9 @@ export function ItemListContainer() {
         setLibros(libros);
       });
     } else {
-      getLibrosByCategory(categoryId).then((libros) => {
-        setLibros(libros);
-      });
+      getLibrosByCategory(categoryId).then(libros => 
+        setLibros(libros)
+      ).catch(err => { alert("Error al cargar libros"); console.log(err); });
     }
   }, [categoryId]);
 
