@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { getLibros, createOrderInFirestore } from "../../asyncmock";
+import Formulario from '../CheckoutForm';
+
 const CartDetail = () => {
   const { cart, removeFromCart, removeAll, calcTotal } = useContext(CartContext);
 
@@ -26,6 +28,8 @@ const CartDetail = () => {
       total: calcTotal(),
       items: LibrosDB
     };
+
+    Formulario();
 
     createOrderInFirestore(order)
       .then(result => alert('Su orden ha sido creada. ID: ' + result.id))
@@ -170,7 +174,7 @@ const CartDetail = () => {
             <button onClick={createOrder}
               className='bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full'
             >
-              Terminar Compra
+              Finalizar Compra
             </button>
           </div>
         </div>
