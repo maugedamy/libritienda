@@ -21,7 +21,8 @@ export function ItemListContainer() {
   }, [categoryId]);
 
   return (
-    <div className="item-list-container">
+    // <div className="item-list-container">
+      <div>
       <ItemList librosList={libros} />
     </div>
   );

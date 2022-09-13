@@ -1,26 +1,20 @@
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-
+import "./item.css";
 
 function Item({ id, title, price, pictureUrl}) {
 
     return (
-        <Card style={{ width: '25rem' }}>
-        {/* // <div className="Libros-Item"> */}
-            {/* <img src={pictureUrl} /> */}
-            <Card.Img variant="top" src={pictureUrl} />
-            <Card.Body>
-            <Card.Title style={{textAlign:'center'}}>{`${title}`} ({id})</Card.Title>
+        <Card className="cardContainer">
+            <Card.Img className="cardImg" variant="center" src={pictureUrl} />
+            <Card.Body className='cardBody'>
+            <Card.Title className="cardTitle">{`${title}`}</Card.Title>
+            <Card.Title className="cardTitle">({id})</Card.Title>
             <Card.Title style={{textAlign:'center'}}>{`$${price}`}</Card.Title>
-            {/* <Card.Text>{`${description}`}</Card.Text> */}
-            {/* <ItemCounter /> */}
-            <Link to={`/detalles/${id}`}>
-                <button>Ver detalles</button>
+            <Link className='cardAnchor' to={`/detalles/${id}`}>
+                <button className='btn'>Ver detalles</button>
             </Link>
             </Card.Body>
-            {/* {<button onClick={loadLibrosDetails}>Ver detalles</button>} */}
-            
-        {/* </div>          */}
         </Card>
     );
 }

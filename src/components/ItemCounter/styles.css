@@ -12,7 +12,7 @@
  
 .counter__output {
     font-size: 2rem;
-    color: rgba(0, 14, 0, 0.747)
+    color: black;
 }
  
 .btn__container {
@@ -25,32 +25,32 @@
 .control__btn {
     font-size: 20px;
     padding: 0.5rem 1rem;
-    background-color: transparent;
-    color: rgba(39, 121, 18, 0.76);
-    border: 1px solid rgb(16, 0, 54);
+    background-color: rgb(210, 192, 253);
+    color: black;
+    border: 1px solid rgb(210, 192, 253);
     cursor: pointer;
     transition: 0.2s ease-in-out;
+    border-radius: 0.375rem;
 }
  
 .control__btn:hover {
-    background-color: rgba(39, 121, 18, 0.76);
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(16, 0, 54);
+    background-color: rgb(181, 150, 248);
+    color: black;
 }
  
 .agregar {
     width: 200px;
     font-size: 18px;
     padding: 10px 20px;
-    background-color: transparent;
-    color: rgb(10, 46, 1);
-    border: 1px solid rgb(16, 0, 54);
+    background-color: rgb(210, 192, 253);
+    color: black;
+    border: 1px solid rgb(210, 192, 253);
     cursor: pointer;
     transition: 0.2s ease-in-out;
+    border-radius: 0.375rem;
 }
  
 .agregar:hover {
-    background-color: rgba(39, 121, 18, 0.76);
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(16, 0, 54);
+    background-color: rgb(181, 150, 248);
+    color: black;
 }

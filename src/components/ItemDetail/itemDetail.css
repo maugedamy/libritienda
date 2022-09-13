@@ -1,0 +1,13 @@
+.cardDetail {
+    align-items: center;
+    max-width: 50rem !important;
+    text-align: center;
+    border: none !important;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 20%);
+}
+
+.cardImgDetail{
+    width: 40% !important; 
+    height: auto !important;
+    justify-items: center;
+}

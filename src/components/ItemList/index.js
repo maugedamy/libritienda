@@ -1,11 +1,13 @@
 import Item from "../Item";
+import "./itemList.css"
 
 export default function ItemList({ librosList }) {
     return (
-        <div className="libros-list" style={{display:'grid',justifyContent:'center'}}>
-            
+        // <div className="libros-list">
+        <div className="parent">
             {librosList.map((libro) => {
                 return (
+                    <div key={libro.id}>
                     <Item
                         key={libro.id}
                         id={libro.id}
@@ -14,6 +16,7 @@ export default function ItemList({ librosList }) {
                         price={libro.price}
                         description={libro.description}
                      />
+                     </div>
                 );
             })}
         </div>

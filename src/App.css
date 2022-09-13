@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.dropdown-item:hover {
+  background-color: rgb(210, 192, 253) !important;
+  /* border: rgb(210, 192, 253) !important; */
+}
+
+.dropdown-item:active {
+  background-color: rgb(181, 150, 248) !important;
+    border: rgb(181, 150, 248) !important;
+    color:black !important;
+}
