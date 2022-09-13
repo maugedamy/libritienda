@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/libritienda/static/css/main.405f8cd6.css",
+    "main.js": "/libritienda/static/js/main.e7145930.js",
+    "index.html": "/libritienda/index.html",
+    "main.405f8cd6.css.map": "/libritienda/static/css/main.405f8cd6.css.map",
+    "main.e7145930.js.map": "/libritienda/static/js/main.e7145930.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.405f8cd6.css",
+    "static/js/main.e7145930.js"
+  ]
+}
